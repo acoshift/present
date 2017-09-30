@@ -1,4 +1,4 @@
-FROM acoshift/go-scratch
+FROM alpine
 
 ADD present /
 ADD nevp /
