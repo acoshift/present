@@ -1,0 +1,52 @@
+kind: Deployment
+apiVersion: apps/v1beta1
+metadata:
+  name: present
+  labels:
+    app: present
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: present
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  template:
+    metadata:
+      name: present
+      labels:
+        app: present
+    spec:
+      containers:
+        - name: present
+          image: gcr.io/acoshift-1362/present:init
+          imagePullPolicy: IfNotPresent
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3999
+          ports:
+            - containerPort: 3999
+          resources:
+            requests:
+              cpu: 10m
+              memory: 30Mi
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: present
+  labels:
+    app: present
+spec:
+  type: NodePort
+  selector:
+    app: present
+  ports:
+    - port: 80
+      targetPort: 3999
+

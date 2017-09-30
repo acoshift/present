@@ -1,0 +1,19 @@
+steps:
+- name: 'gcr.io/cloud-builders/go'
+  args: ['get', 'golang.org/x/tools/present']
+- name: 'gcr.io/cloud-builders/go'
+  args: ['build', '-o', 'present', '-a', '-ldflags', '-w -s', 'golang.org/x/tools/cmd/present']
+  env:
+  - 'PROJECT_ROOT=github.com/acoshift/present'
+  - 'GOOS=linux'
+  - 'GOARCH=amd64'
+  - 'CGO_ENABLED=0'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA', '.']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['set', 'image', 'deploy/present', 'present=gcr.io/$PROJECT_ID/present:$COMMIT_SHA']
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast1-b'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-sg-1'
+images:
+  - 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA'
