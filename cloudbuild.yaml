@@ -1,6 +1,8 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
   args: ['get', 'golang.org/x/tools/cmd/present']
+  env:
+  - 'PROJECT_ROOT=github.com/acoshift/present'
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-o', 'present', '-a', '-ldflags', '-w -s', 'golang.org/x/tools/cmd/present']
   env:
