@@ -1,6 +1,6 @@
 steps:
 - name: 'gcr.io/cloud-builders/go'
-  args: ['get', 'golang.org/x/tools/present']
+  args: ['get', 'golang.org/x/tools/cmd/present']
 - name: 'gcr.io/cloud-builders/go'
   args: ['build', '-o', 'present', '-a', '-ldflags', '-w -s', 'golang.org/x/tools/cmd/present']
   env:
