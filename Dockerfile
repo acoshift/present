@@ -2,9 +2,9 @@ FROM golang:1.9
 
 RUN go get golang.org/x/tools/cmd/present
 
-ADD nevp /slides/nevp
+ADD slide /slide
 
 EXPOSE 3999
-WORKDIR /slides
+WORKDIR /slide
 CMD ["present", "-http=0.0.0.0:3999"]
 
