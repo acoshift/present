@@ -1,0 +1,127 @@
+Docker
+
+Thanatat Tamtan
+
+Full-Stack Magician
+CTO and Co-Founder, Acourse.io
+Full-Stack Software Magician, Health at Home
+Former Senior Full-Stack Software Engineer, Fastwork.co
+Former CTO in-charge, Lean Startup Thailand
+acoshift@gmail.com
+https://acoshift.me
+@acoshift
+
+* Docker
+
+is a tool designed to make it easier to create, deploy, and run applications by using containers.
+
+.image docker-vm-container.png
+
+* Container
+
+.image container.png _ 600
+
+* Install
+
+.link https://store.docker.com
+.image docker_community.png _ 300
+
+* Commands
+
+- Build
+- Ship
+- Run
+
+* Build
+
+  docker build -t <image> <Dockerfile>
+
+Build an image from <Dockerfile> and tag the image
+
+ex.
+
+  docker build -t myapp:1.0 .
+
+Build an image from Dockerfile in current directory and tag myapp:1.0
+
+* Build
+
+  docker images
+
+List all local images
+
+* Build
+
+  docker rmi <image>
+
+Delete an image from local image store
+
+* Ship
+
+  docker pull <image>
+
+Pull an image from a registry
+
+* Ship
+
+  docker tag <src-image> <dst-image>
+
+Retag a local image
+
+* Ship
+
+  docker login <registry>
+
+Login to a registry
+
+  docker login
+
+Login to docker store
+
+* Ship
+
+  docker push <image>
+
+Push an image to registry
+
+* Run
+
+  docker run
+    --rm            # remove container after exit
+    -it             # connect terminal to container
+    --name myapp    # name the container
+    -p 8080:80      # expose external port 5000 to 80
+    -v ~/data:/data # create a host mapped volume inside container
+    myapp:1.0       # image
+    /app            # command to run
+
+* Run
+
+  docker stop <name>
+
+Stop a running container through SIGTERM
+
+* Run
+
+  docker kill <name>
+
+Stop a running container through SIGKILL
+
+* Run
+
+  docker ps
+
+List the running containers
+
+* Run
+
+  docker exec -it <name> bash
+
+Create a new bash process inside the container and connect to terminal
+
+* Run
+
+  docker logs --tail 100 <name>
+
+Print the last 100 lines of a container's log
+
