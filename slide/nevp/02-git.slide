@@ -139,3 +139,13 @@ Rebase current branch onto <base>
 
 Pull upstream and rebase instead of merge
 
+* Stash
+
+  git stash
+
+Stash current unstaged changes
+
+  git stash apply
+
+Pop the last stash and apply to current branch
+
