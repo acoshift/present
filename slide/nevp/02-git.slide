@@ -23,6 +23,16 @@ https://acoshift.me
 
 Create empty git repo in specified directory
 
+* Remote
+
+  git remote add <name> <url>
+
+Creaet a new connection to a remote repo
+
+  git fetch <remote> <branch>
+
+Fetches a <branch> from repo
+
 * Add
 
   git add <directory/file>
@@ -38,6 +48,40 @@ Commit the staged snapshot
   git commit --amend
 
 Replace the last commit with staged changes and last commit combined
+
+* Push
+
+  git push <remote> <branch>
+
+Push the branch to <remote>
+
+  git push -u <remote> <branch>
+
+Push and set upstream to <remote>
+
+  git push
+
+Push to current upstream
+
+  git push -f
+
+FORCE push local copy to current upstream
+
+* Clone
+
+  git clone <repo>
+
+Clone <repo> onto local machine
+
+* Pull
+
+  git pull <remote> <branch>
+
+Fetch the <branch> on <remote> and immediately merge into local
+
+  git pull
+
+Pull current upstream
 
 * Log
 
@@ -63,5 +107,35 @@ Create new commit that undoes all of the changes made in <commit>
 
 Remove <file> from staging area
 
+* Branch
 
+  git branch
+
+List all the branches in repo
+
+* Checkout
+
+  git checkout -b <branch>
+
+Create and checkout a new branch named <branch>
+
+  git checkout <branch>
+
+Checkout an existing branch
+
+* Merge
+
+  git merge <branch>
+
+Merge <branch> into current branch
+
+* Rebase
+
+  git rebase <base>
+
+Rebase current branch onto <base>
+
+  git pull --rebase
+
+Pull upstream and rebase instead of merge
 
