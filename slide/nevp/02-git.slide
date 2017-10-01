@@ -1,0 +1,67 @@
+Git
+
+Thanatat Tamtan
+
+Full-Stack Magician
+CTO and Co-Founder, Acourse.io
+Full-Stack Software Magician, Health at Home
+Former Senior Full-Stack Software Engineer, Fastwork.co
+Former CTO in-charge, Lean Startup Thailand
+acoshift@gmail.com
+https://acoshift.me
+@acoshift
+
+* Version Control
+
+- help a software team manage changes to source code
+- keep track of every modification to the code
+- work concurently with branching and merging
+
+* Init
+
+  git init <directory>
+
+Create empty git repo in specified directory
+
+* Add
+
+  git add <directory/file>
+
+Stage all changes in <directory/file> for the next commit
+
+* Commit
+
+  git commit -m "<message>"
+
+Commit the staged snapshot
+
+  git commit --amend
+
+Replace the last commit with staged changes and last commit combined
+
+* Log
+
+  git log
+
+Display the commit history
+
+* Diff
+
+  git diff
+
+Show unstaged changes between index and working directory
+
+* Revert
+
+  git revert <commit>
+
+Create new commit that undoes all of the changes made in <commit>
+
+* Reset
+
+  git reset <file>
+
+Remove <file> from staging area
+
+
+
