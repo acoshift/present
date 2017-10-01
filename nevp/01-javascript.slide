@@ -8,15 +8,127 @@ https://acoshift.me
 
 * JavaScript
 
+- high level
+- dynamic
+- untyped
+- interpreted
+- event-driven
+
 * Why
 
-* Callback
+learn once, write anywhere
+
+* Why
+
+- web
+- server
+- desktop
+- mobile
+- embedded
+
+* Event-Driven
+
+* Single-Threaded
+
+- processing of one command at a time
+
+.code 01-single-thread.js
+
+* Non-blocking I/O
+
+.code 02-non-blocking.js
 
 * Event Loop
 
+.image event-loop.jpg
+
+* Callback
+
+.code 03-callback.js
+
+* Callback Hell
+
+.code 04-callback-hell.js
+
+* Callback Hell
+
+.image callback-hell.jpg
+
 * Promise
+
+.code 05-promise.js
+
+* Node.js
+
+- JavaScript Runtime
+- built on Chrome's V8 JavaScript engine
 
 * npm
 
+Package Manager
+
+- npm init
+- npm install express
+- npm install -g nodemon
+
 * Nodemon
 
+Auto restart when file changed
+
+- node index.js
+- nodemon index.js
+
+* Modern JavaScript
+
+* ES6
+
+ECMAScript 6
+
+* let + const
+
+Block-scoped binding construct
+
+.code 06-let-const-1.js
+
+* let
+
+.code 06-let-const-2.js
+
+* Arrows
+
+function shorthand using `=>` syntax,
+but share the same lexical `this`
+
+.code 07-arrow-1.js
+
+* Arrows
+
+.code 07-arrow-2.js
+
+* Template String
+
+.code 08-template-string.js
+
+* Destructuring
+
+.code 09-destructuring.js
+
+* Object Literals
+
+.code 10-object-literals.js
+
+* Default
+
+.code 11-default.js
+
+* Rest
+
+.code 12-rest.js
+
+* Spread
+
+.code 13-spread.js
+
+* Object Rest/Spread (ES.Next)
+
+.code 14-object-rest-spread.js

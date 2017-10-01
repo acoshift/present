@@ -1,0 +1,4 @@
+doA()
+doB()
+doC()
+doD()
