@@ -1,0 +1,203 @@
+Backend {Hard Way} Ep.1
+
+Thanatat Tamtan
+
+Full-Stack Magician
+acoshift@gmail.com
+https://acoshift.me
+@acoshift
+
+* OSI model
+
+- Open Systems Interconnection model
+- characterizes and standardizes the communication functions of a telecommunication or computing system
+
+* OSI layers
+
+- Layer 1: Physical Layer
+- Layer 2: Data Link Layer
+- Layer 3: Network Layer
+- Layer 4: Transport Layer
+- Layer 5: Session Layer
+- Layer 6: Presentation Layer
+- Layer 7: Application Layer
+
+* Layer 1: Physical Layer
+
+- Unit: Bit
+- Example: Network Adapter, Repeater, Modems
+
+* Layer 2: Data Link Layer
+
+- Unit: Frame
+- Example: IEEE 802 (802.3 Ethernet, 802.11 WiFi)
+
+* Layer 3: Network Layer
+
+- Unit: Packet
+- Function: addressing, routing, traffic control
+
+* Layer 4: Transport Layer
+
+- Unit: Segment (TCP) / Datagram (UDP)
+- Function: Segmentation, Acknowledgement, Multiplexing
+
+* Layer 5: Session Layer
+
+- Unit: Data
+- Function: Managing community session (establishes, manages and terminates connection)
+
+* Layer 6: Presentation Layer
+
+- Unit: Data
+- Function: Encoding, Compression, Encryption/Descyption
+
+* Layer 7: Application Layer
+
+- Unit: Data
+- Function: High-level API
+
+* Internet Layering
+
+.image internet_layering.svg
+
+* Protocol
+
+- rules that allow two or more entities to transmit information
+- syntax, semantics and synchronization of communication and possible error recovery methods
+
+* TCP (Transmission Control Protocol)
+
+.image tcp_state_diagram.svg _ 750
+
+* Workshop
+
+- TCP Server
+
+* HTTP (Hypertext Transfer Protocol)
+
+- Version 0.9: 1991
+- Version 1.0: 1996
+- Version 1.1: 1997
+- Version 2.0: 2015
+
+* HTTP Request
+
+    {METHOD} {PATH} HTTP/{VERSION}
+    {HEADERS}
+
+Example
+
+    GET / HTTP/1.1
+    Host: localhost:8000
+    Accept: */*
+
+* HTTP Response
+
+    HTTP/{VERSION} {STATUS} {STATUS TEXT}
+    {HEADERS}
+
+    {BODY}
+
+Example
+
+    HTTP/1.1 200 OK
+    Date: Thu, 05 Oct 2017 06:22:24 GMT
+    Content-Length: 5
+    Content-Type: text/plain; charset=utf-8
+
+    Hello
+
+* HTTP Request Methods
+
+.image http_request_methods.png _ 1000
+
+* HTTP Status Code
+
+- 1xx: Informational
+- 2xx: Successful
+- 3xx: Redirection
+- 4xx: Client Error
+- 5xx: Server Error
+
+* 1×× Informational
+
+- 100 Continue
+- 101 Switching Protocols
+- 102 Processing
+
+* 2×× Success
+- *200* OK
+- *201* Created
+- *202* Accepted
+- 203 Non-authoritative Information
+- *204* No Content
+- 205 Reset Content
+- 206 Partial Content
+- 207 Multi-Status
+- 208 Already Reported
+- 226 IM Used
+
+* 3×× Redirection
+
+- 300 Multiple Choices
+- *301* Moved Permanently
+- *302* Found
+- *303* See Other
+- *304* Not Modified
+- 305 Use Proxy
+- 307 Temporary Redirect
+- 308 Permanent Redirect
+
+* 4×× Client Error
+
+- *400* Bad Request
+- *401* Unauthorized
+- 402 Payment Required
+- *403* Forbidden
+- *404* Not Found
+- *405* Method Not Allowed
+- 406 Not Acceptable
+- 407 Proxy Authentication Required
+- 408 Request Timeout
+- *409* Conflict
+- *410* Gone
+- 411 Length Required
+
+* 4×× Client Error
+
+- *412* Precondition Failed
+- *413* Payload Too Large
+- *414* Request-URI Too Long
+- *415* Unsupported Media Type
+- 416 Requested Range Not Satisfiable
+- 417 Expectation Failed
+- *418* I'm a teapot
+- 421 Misdirected Request
+- 422 Unprocessable Entity
+- 423 Locked
+- 424 Failed Dependency
+- 426 Upgrade Required
+
+* 4×× Client Error
+
+- 428 Precondition Required
+- *429* Too Many Requests
+- 431 Request Header Fields Too Large
+- 444 Connection Closed Without Response
+- 451 Unavailable For Legal Reasons
+- 499 Client Closed Request
+
+* 5×× Server Error
+- *500* Internal Server Error
+- *501* Not Implemented
+- *502* Bad Gateway
+- *503* Service Unavailable
+- *504* Gateway Timeout
+- 505 HTTP Version Not Supported
+- 506 Variant Also Negotiates
+- 507 Insufficient Storage
+- 508 Loop Detected
+- 510 Not Extended
+- 511 Network Authentication Required
+- 599 Network Connect Timeout Error
