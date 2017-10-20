@@ -201,3 +201,171 @@ Example
 - 510 Not Extended
 - 511 Network Authentication Required
 - 599 Network Connect Timeout Error
+
+* Workshop
+
+- TCP HTTP Server
+
+* Function
+
+Params => Function => Result
+
+.code function.go
+
+* Handler
+
+Request => Handler => Response
+
+.code handler.go
+
+.code handler-func.go
+
+.image handler.png
+
+* Request
+
+.code request.go
+
+* ResponseWriter
+
+.code responseWriter.go
+
+* Router/Multiplexer
+
+.image router.png 500 _
+
+* Workshop
+
+- Router
+
+* Middleware
+
+.image handler.png 150 _
+
+.image middleware.png 150 _
+
+* Workshop
+
+- Middleware
+
+* Chain Middlewares
+
+.image chain-middleware.png 160 _
+
+.code chain-middleware.go
+
+* Chain Middlewares
+
+.code chain-middleware-func.go
+
+* Best Practice: Logging
+
+    {
+        "time": "2017-10-20T15:05:04.21702Z",
+        "remote_ip": "127.0.0.1:54084",
+        "host": "localhost:3333",
+        "method": "GET",
+        "uri": "/",
+        "status": 200,
+        "latency": 35265,
+        "latency_human": "35.265µs",
+        "bytes_in": 0,
+        "bytes_out": 5
+    }
+
+* HTTP Request Body
+
+    {METHOD} {PATH} HTTP/{VERSION}
+    {HEADERS}
+
+    {BODY}
+
+Example
+
+    POST / HTTP/1.1
+    Host: localhost:8000
+    Accept: */*
+    Content-Type: text/plain; charset=utf-8
+
+    Hello
+
+* URL Encoded
+
+*application/x-www-form-urlencoded*
+
+    POST / HTTP/1.1
+    Host: localhost:8000
+    Accept: */*
+    Content-Type: application/x-www-form-urlencoded; charset=utf-8
+
+    username=test&password=hacker
+
+* Form Data
+
+*multipart/form-data*
+
+    POST / HTTP/1.1
+    Host: localhost:8000
+    Accept: */*
+    Content-Type: multipart/form-data; charset=utf-8; boundary=__X_BOUNDARY__
+
+    --__X_BOUNDARY__
+    Content-Disposition: form-data; name="username"
+
+    test
+    --__X_BOUNDARY__
+    Content-Disposition: form-data; name="password"
+
+    hacker
+    --__X_BOUNDARY__--
+
+* JSON
+
+*application/json*
+
+    POST / HTTP/1.1
+    Host: localhost:8000
+    Accept: */*
+    Content-Type: application/json; charset=utf-8
+
+    {"username":"test","password":"hacker"}
+
+* Best Practice: Body Limiter
+
+.code body-limiter.go
+
+* Workshop: Image Resizer
+
+- POST binary image limit size to 2 MiB
+- Response with jpeg 150x150 resolution image
+
+* Compression Middleware
+
+- If *request* *DO* *NOT* contain "Accept-Encoding" header then *DO* *NOT* compress
+- If *request* contains "Sec-WebSocket-Key" header then *DO* *NOT* compress
+- If *response* contains "Content-Encoding" header then *DO* *NOT* compress
+- If *response* body's length less than 860 bytes, it's faster to send uncompress data
+- Only use compress algorithm in "Accept-Encoding" header
+- Add "Vary: Accept-Encoding" header to *response*
+- Add "Content-Encoding: {compress algorithm}" header to *response*
+- Delete "Content-Length" header (before compress) from *response*
+
+* Best Practice: Object Pooling
+
+    $ hey -H "Accept-Encoding: gzip" -n 100000 http://localhost:3333/large
+
+- *Without* Pooling
+
+    Total:          22.0684 secs
+    Slowest:        0.1044 secs
+    Fastest:        0.0003 secs
+    Average:        0.0109 secs
+    Requests/sec:   4531.3572
+
+- *With* Pooling
+
+    Total:          9.3985 secs
+    Slowest:        0.1152 secs
+    Fastest:        0.0002 secs
+    Average:        0.0046 secs
+    Requests/sec:   10640.0509
