@@ -339,6 +339,10 @@ Example
 - POST binary image limit size to 2 MiB
 - Response with jpeg 150x150 resolution image
 
+* Best Practice: Testible Handler
+
+.code testible-handler.go
+
 * Compression Middleware
 
 - If *request* *DO* *NOT* contain "Accept-Encoding" header then *DO* *NOT* compress
