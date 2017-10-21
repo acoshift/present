@@ -380,19 +380,21 @@ Example
 
 * CORS Headers
 
+P: Preflighted Request, R: Real Request
+
 *Request*
 
-- Access-Control-Request-Method
-- Access-Control-Request-Headers
+- [P] Access-Control-Request-Method
+- [P] Access-Control-Request-Headers
 
 *Response*
 
-- Access-Control-Allow-Origin
-- Access-Control-Allow-Methods
-- Access-Control-Allow-Headers
-- Access-Control-Allow-Credentials
-- Access-Control-Expose-Headers
-- Access-Control-Max-Age
+- [P, R] Access-Control-Allow-Origin
+- [P] Access-Control-Allow-Methods
+- [P] Access-Control-Allow-Headers
+- [P, R] Access-Control-Allow-Credentials
+- [R] Access-Control-Expose-Headers
+- [P] Access-Control-Max-Age
 
 * CORS Note
 
