@@ -70,10 +70,6 @@ https://acoshift.me
 
 .image tcp_state_diagram.svg _ 750
 
-* Workshop
-
-- TCP Server
-
 * HTTP (Hypertext Transfer Protocol)
 
 - Version 0.9: 1991
@@ -202,10 +198,6 @@ Example
 - 511 Network Authentication Required
 - 599 Network Connect Timeout Error
 
-* Workshop
-
-- TCP HTTP Server
-
 * Function
 
 Params => Function => Result
@@ -234,19 +226,11 @@ Request => Handler => Response
 
 .image router.png 500 _
 
-* Workshop
-
-- Router
-
 * Middleware
 
 .image handler.png 150 _
 
 .image middleware.png 150 _
-
-* Workshop
-
-- Middleware
 
 * Chain Middlewares
 
@@ -508,3 +492,83 @@ P: Preflighted Request, R: Real Request
 * Best Practice: Graceful Shutdown
 
 .code graceful-shutdown.go
+
+* Authentication
+
+- Cookie-based Authentication
+- Token-based Authentication
+- Signature-based Authentication
+
+* Cookie
+
+*Response*
+
+    Set-Cookie: <name>=<value>; <flag-1>; <flag-2>; ...
+
+*Flags*
+
+- Expires=<date>
+- Max-Age=<seconds>
+- Domain=<domain>
+- Path=<path>
+- Secure
+- HttpOnly
+- SameSite=Strict
+- SameSite=Lax
+
+* Cookie
+
+- Session cookie
+
+    Set-Cookie: session=wK8VfUWfF9R; Secure; HttpOnly; Path=/
+
+- Permanent cookie
+
+    Set-Cookie: session=wK8VfUWfF9R; Secure; HttpOnly; Path=/; Max-Age=3600
+    Set-Cookie: session=wK8VfUWfF9R; Secure; HttpOnly; Path=/; Expires=Mon, 15 Jan 2018 08:00:00 GMT
+
+* Session
+
+OWASP - Session Management Cheat Sheet
+
+* Session ID Name Fingerprinting
+
+The name used by the session ID should not be extremely descriptive nor offer unnecessary details about the purpose and meaning of the ID.
+
+- PHPSESSID (PHP)
+- JSESSIONID (J2EE)
+- ASP.NET_SessionId (ASP.NET)
+
+It is recommended to change the default session ID name of the web development framework to a generic name, such as "id".
+
+* Session ID Length
+
+The session ID must be long enough to prevent brute force attacks, where an attacker can go through the whole range of ID values and verify the existence of valid sessions.
+
+The session ID length must be at least *128* *bits* (16 bytes).
+
+* Session ID Entropy
+
+The session ID must be unpredictable (random enough) to prevent guessing attacks.
+
+* Session ID Content (or Value)
+
+The session ID content (or value) must be meaningless to prevent information disclosure attacks.
+
+The session ID must simply be an identifier on the client side, and its value must never include sensitive information.
+
+* Accepted Session ID Exchange Mechanisms
+
+If a user submits a session ID through a different exchange mechanism, such as a URL parameter, the web application should avoid accepting it as part of a defensive strategy to stop *session* *fixation*.
+
+* Session Expiration
+
+*Automatic*
+
+- Idle Timeout
+- Absolute Timeout
+- Renewal Timeout
+
+*Manual*
+
+- Logout Button !!!
