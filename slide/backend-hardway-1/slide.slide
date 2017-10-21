@@ -373,3 +373,110 @@ Example
     Fastest:        0.0002 secs
     Average:        0.0046 secs
     Requests/sec:   10640.0509
+
+* Cross-Origin Resource Sharing (CORS)
+
+.image cors_principle.png 500 _
+
+* CORS Headers
+
+*Request*
+
+- Access-Control-Request-Method
+- Access-Control-Request-Headers
+
+*Response*
+
+- Access-Control-Allow-Origin
+- Access-Control-Allow-Methods
+- Access-Control-Allow-Headers
+- Access-Control-Allow-Credentials
+- Access-Control-Expose-Headers
+- Access-Control-Max-Age
+
+* CORS Note
+
+- Access-Control-Allow-Origin: *
+- Access-Control-Allow-Credentials: true
+*CAN* *NOT* use together
+
+* Preflighted Request
+
+- Request
+
+    OPTIONS /api/rocket HTTP/1.1
+    Host: api.example.com
+    Origin: http://example.com
+    Access-Control-Request-Method: POST
+    Access-Control-Request-Headers: Authorization, Content-Type
+
+- Response
+
+    HTTP/1.1 200 OK
+    Date: Sat, 21 Oct 2017 11:20:51 GMT
+    Access-Control-Allow-Header: Authorization, Content-Type
+    Access-Control-Allow-Methods: POST
+    Access-Control-Allow-Origin: http://example.com
+    Access-Control-Max-Age: 7200
+    Vary: Origin
+    Vary: Access-Control-Request-Method
+    Vary: Access-Control-Request-Headers
+    Content-Length: 0
+
+* Real Request
+
+- Request
+
+    POST /api/rocket HTTP/1.1
+    Host: api.example.com
+    Origin: http://example.com
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 23
+
+    {"name":"launcher-123"}
+
+- Response
+
+    HTTP/1.1 201 Created
+    Date: Sat, 21 Oct 2017 11:20:51 GMT
+    Access-Control-Allow-Origin: http://example.com
+    Content-Type: application/json; charset=utf-8
+    Content-Length: 9
+
+    {"id":17}
+
+* Preflighted Request
+
+- If Allow Credentials, Add
+    Access-Control-Allow-Credentials: true
+- Add
+    Access-Control-Allow-Methods: {METHOD-1}, {METHOD-2}, ...
+- Add
+    Access-Control-Allow-Headers: {HEADER-1}, {HEADER-2}, ...
+- If Max-Age > 0, Add
+    Access-Control-Max-Age: {MAX-AGE in seconds}
+
+* Preflighted Request
+
+- If Allow All Origin and *NOT* Allow Credentials, Add
+    Access-Control-Allow-Origin: *
+- If Allow All Origin and Allow Credentials, *panic* to tell developer
+- If *NOT* Allow All Origin and *Incoming* *Origin* is *ALLOW*, Add
+    Access-Control-Allow-Origin: {Incoming Origin}
+    Vary: Origin
+    Vary: Access-Control-Request-Method
+    Vary: Access-Control-Request-Headers
+- If *NOT* Allow All Origin and *Incoming* *Origin* is *DENY*, response with forbidden
+
+* Real Request
+
+- If Allow Credentials, Add
+    Access-Control-Allow-Credentials: true
+- If Expose Headers, Add
+    Access-Control-Expose-Headers: {HEADER-1}, {HEADER-2}, ...
+- If Allow All Origin and *NOT* Allow Credentials, Add
+    Access-Control-Allow-Origin: *
+- If *NOT* Allow All Origin and *Incoming* *Origin* is *ALLOW*, Add
+    Access-Control-Allow-Origin: {Incoming Origin}
+    Vary: Origin
+- If *NOT* Allow All Origin and *Incoming* *Origin* is *DENY*, response with forbidden
