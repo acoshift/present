@@ -480,3 +480,29 @@ Example
     Access-Control-Allow-Origin: {Incoming Origin}
     Vary: Origin
 - If *NOT* Allow All Origin and *Incoming* *Origin* is *DENY*, response with forbidden
+
+* Best Practice: Health Check
+
+- To tell when ready to accept incoming request
+- To tell when to restart
+- To tell what went wrong
+- *MUST* fast, low resource (ex. call every 10 seconds)
+
+*Success*
+
+- Response with status 200 OK
+
+*Failure*
+
+- Response with status 500 Internal Server Error
+
+* Best Practice: Graceful Shutdown
+
+- Send SIGTERM to process (http server)
+- HTTP Server stops receive new request
+- Wait (with deadline) until all pending requests finish
+- Shutdown Server
+
+* Best Practice: Graceful Shutdown
+
+.code graceful-shutdown.go
