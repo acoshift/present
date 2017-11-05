@@ -402,7 +402,7 @@ P: Preflighted Request, R: Real Request
 
     HTTP/1.1 200 OK
     Date: Sat, 21 Oct 2017 11:20:51 GMT
-    Access-Control-Allow-Header: Authorization, Content-Type
+    Access-Control-Allow-Headers: Authorization, Content-Type
     Access-Control-Allow-Methods: POST
     Access-Control-Allow-Origin: http://example.com
     Access-Control-Max-Age: 7200
