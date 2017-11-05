@@ -82,6 +82,8 @@ https://acoshift.me
     {METHOD} {PATH} HTTP/{VERSION}
     {HEADERS}
 
+    {BODY}
+
 Example
 
     GET / HTTP/1.1
