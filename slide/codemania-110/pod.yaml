@@ -1,0 +1,12 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: echoserver
+  labels:
+    app: echoserver
+spec:
+  containers:
+  - name: echoserver
+    image: gcr.io/google-containers/echoserver:1.6
+    ports:
+    - containerPort: 8080

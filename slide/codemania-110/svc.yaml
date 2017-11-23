@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: echoserver
+spec:
+  type: LoadBalancer
+  selector:
+    app: echoserver
+  ports:
+  - port: 80
+    targetPort: 8080
+    nodePort: 31000
+  loadBalancerIP: 12.34.56.78

@@ -1,0 +1,111 @@
+Kubernetes - How to use and contribute back to ecosystem
+
+Thanatat Tamtan
+
+Full-Stack Magician
+CTO and Co-Founder, Acourse.io
+Software Developer, Health at Home
+acoshift@gmail.com
+https://acoshift.me
+@acoshift
+
+* วันนี้ทำอะไรกันดี 😬
+
+- สร้าง k8s cluster บน GKE
+- build docker แล้ว push ขึ้น gcr.io
+- รัน nginx ใน k8s
+- สร้าง L4 ต่อกับ nginx
+- รัน database ใน k8s
+- รัน app ของเราใน k8s
+- ทำให้เมื่อ push ลง githut แล้ว build + deploy เอง
+- ทำเว็บให้เป็น https แบบฟรี ๆ ด้วย kube-lego
+- ดูว่าเราจะ contribute อะไรให้ k8s ecosystem ได้บ้าง
+
+* หน้าตาของ k8s แบบง่าย ๆ
+
+.image k8s-architecture.png 440 _
+
+* หน้าตาของ k8s แบบง่ายน้อยลงนิสนึง
+
+.image k8s-architecture-2.png 440 _
+
+* Pod
+
+- Container => ถั่ว
+- Pod => ฝักถั่ว
+
+.image pod.png 440 _
+
+* Pod
+
+.code pod.yaml
+
+* Service
+
+.image svc-1.png 440 _
+
+* Service
+
+.image svc-2.png 440 _
+
+* Service
+
+- ClusterIP
+- NodePort
+- LoadBalancer
+- ExternalName
+
+* Service[Type=ClusterIP]
+
+.image svc-3.png 400 _
+
+* Service[Type=NodePort]
+
+.image svc-4.png 430 _
+
+* Service[Type=LoadBalancer]
+
+.image svc-5.png 460 _
+
+* Service
+
+.code svc.yaml
+
+* Replica Set
+
+.image rs.png 530 _
+
+* Deployment
+
+.image deploy.png 520 _
+
+* จะเอา app ขึ้น k8s ต้องทำอะไรบ้าง ?
+
+- Health Check
+
+.code healthcheck.go
+.code healthcheck-2.go
+
+* จะเอา app ขึ้น k8s ต้องทำอะไรบ้าง ?
+
+- Graceful Shutdown
+
+.code shutdown.go
+
+* มาลองทำกันเถอะ 🤤
+
+* 😅
+
+* แล้วเราจะ contribute อะไรให้ k8s ecosystem ได้บ้าง
+
+* ทำให้ k8s app บางตัว graceful shutdown 😬
+
+.image contrib-1.png 500 _
+
+* เพื่ม nginx config 1 บรรทัด 😳
+
+.image contrib-2.png 500 _
+
+* ช่วยเขียน yaml ให้ app คนอื่น
+
+.image contrib-3.png 450 _
