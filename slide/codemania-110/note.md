@@ -47,3 +47,16 @@
 
     - Add Container Engine Developer Role to cloudbuild service account
     - Add Trigger
+
+1. Cleanup
+
+    - Delete k8s resources
+    ```bash
+    $ kubectl delete \
+      -f app.yaml \
+      -f kube-lego.yaml \
+      -f cockroachdb.yaml \
+      -f nginx.yaml
+    ```
+
+    - Delete k8s cluster
