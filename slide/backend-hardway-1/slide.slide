@@ -665,3 +665,68 @@ Currently, only *Chrome* based browsers supports this attribute.
     Set-Cookie: session=xxxxx; SameSite=Strict
 
     Set-Cookie: session=xxxxx; SameSite=Lax
+
+* HTTP/2
+
+* Decrease latency to improve page load speed in web browsers
+
+- Data compression of HTTP headers
+- HTTP/2 Server Push
+- Pipelining of requests
+- Fixing the head-of-line blocking problem in HTTP 1.x
+- Multiplexing multiple requests over a single TCP connection
+
+* Head-of-line blocking (HOL blocking)
+
+A performance-limiting phenomenon that occurs when a line of packets is held up by the first packet.
+
+- Switches
+- Out-of-order delivery
+
+* HOL - Switches
+
+.image HOL_blocking.png
+
+* Pipeline
+
+.image HTTP_pipelining2.svg
+
+* Server Push
+
+.image serverpush.svg _ 900
+
+* Multiplexing
+
+.image http1-vs-http2-multiplexing.png _ 550
+
+* gRPC
+
+.image grpc.svg _ 750
+
+* gRPC Service
+
+    // The greeting service definition.
+    service Greeter {
+        // Sends a greeting
+        rpc SayHello (HelloRequest) returns (HelloReply) {}
+    }
+
+    // The request message containing the user's name.
+    message HelloRequest {
+        string name = 1;
+    }
+
+    // The response message containing the greetings
+    message HelloReply {
+        string message = 1;
+    }
+
+* gRPC Message
+
+    message Test1 {
+        required int32 a = 1;
+    }
+
+Encoded Message
+
+    08 96 01
