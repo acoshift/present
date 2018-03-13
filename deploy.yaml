@@ -49,4 +49,3 @@ spec:
   ports:
     - port: 80
       targetPort: 3999
-
