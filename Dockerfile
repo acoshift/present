@@ -1,5 +1,6 @@
 FROM golang:1.10-alpine
 
+RUN apk add --no-cache git
 RUN go get golang.org/x/tools/cmd/present
 
 ADD slide /slide
