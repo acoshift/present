@@ -111,6 +111,10 @@ Example
 
 .image http_request_methods.png _ 1000
 
+* HTTP Request Methods
+
+.image http_request_method_case.png _ 950
+
 * HTTP Status Code
 
 - 1xx: Informational
