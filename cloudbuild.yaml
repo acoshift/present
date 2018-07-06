@@ -6,7 +6,7 @@ steps:
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['set', 'image', 'deploy/present', 'present=gcr.io/$PROJECT_ID/present:$COMMIT_SHA']
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast1-b'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-sg-1'
+  - 'CLOUDSDK_COMPUTE_ZONE=asia-southeast1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=cluster-1'
 images:
   - 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA'
