@@ -71,6 +71,10 @@ https://acoshift.me
 
 .image tcp_state_diagram.svg _ 750
 
+* Workshop #1
+
+- TCP Server
+
 * HTTP (Hypertext Transfer Protocol)
 
 - Version 0.9: 1991
@@ -205,6 +209,10 @@ Example
 - 511 Network Authentication Required
 - 599 Network Connect Timeout Error
 
+* Workshop #2
+
+- TCP HTTP Server
+
 * Function
 
 Params => Function => Result
@@ -229,9 +237,46 @@ Request => Handler => Response
 
 .code responseWriter.go
 
+    HTTP/{VERSION} {STATUS} {STATUS TEXT}
+    {HEADERS}
+        # header can write only once
+    {BODY}
+
+* Workshop #3
+
+- TCP HTTP Server with Handler
+
+* Workshop #4
+
+- TCP HTTP Server with net/http Handler
+
+* Workshop #5
+
+- HTTP Server using net/http
+
 * Router/Multiplexer
 
 .image router.png 500 _
+
+* Workshop #6
+
+- Basic Router
+
+* Workshop #7
+
+- Router with slice
+
+* Workshop #8
+
+- Router with map
+
+* Workshop #9
+
+- net/http Multiplexer
+
+* Workshop #10
+
+- net/http Default Multiplexer
 
 * Middleware
 
@@ -239,15 +284,9 @@ Request => Handler => Response
 
 .image middleware.png 150 _
 
-* Chain Middlewares
+* Workshop #11
 
-.image chain-middleware.png 160 _
-
-.code chain-middleware.go
-
-* Chain Middlewares
-
-.code chain-middleware-func.go
+- Middleware
 
 * Logging
 
@@ -263,6 +302,25 @@ Request => Handler => Response
         "bytes_in": 0,
         "bytes_out": 5
     }
+
+* Workshop #12
+
+- Logging Middleware
+
+* Chain Middlewares
+
+.image chain-middleware.png 160 _
+
+.code chain-middleware.go
+
+* Chain Middlewares
+
+.code chain-middleware-func.go
+
+* Workshop #13-#14
+
+- Chain middlewares
+- Create new middleware from multiple middlewares
 
 * HTTP Request Body
 
@@ -280,6 +338,10 @@ Example
 
     Hello
 
+* Workshop #15
+
+- Body Binary
+
 * URL Encoded
 
 *application/x-www-form-urlencoded*
@@ -290,6 +352,10 @@ Example
     Content-Type: application/x-www-form-urlencoded; charset=utf-8
 
     username=test&password=hacker
+
+* Workshop #16
+
+- Body URL Encoded
 
 * Form Data
 
@@ -310,6 +376,10 @@ Example
     hacker
     --__X_BOUNDARY__--
 
+* Workshop #17
+
+- Body Form Data
+
 * JSON
 
 *application/json*
@@ -321,29 +391,50 @@ Example
 
     {"username":"test","password":"hacker"}
 
+* Workshop #18
+
+- Body JSON
+
 * Body Limiter
 
 .code body-limiter.go
+
+* Workshop #19
+
+- Body Limiter
 
 * Workshop: Image Resizer
 
 - POST binary image limit size to 2 MiB
 - Response with jpeg 150x150 resolution image
 
-* Testible Handler
+* Workshop #20
 
-.code testible-handler.go
+- Image Resizer
+
+* Testable Handler
+
+.code testable-handler.go
+
+* Workshop #21
+
+- Testable Image Resizer
 
 * Compression Middleware
 
 - If *request* *DO* *NOT* contain "Accept-Encoding" header then *DO* *NOT* compress
 - If *request* contains "Sec-WebSocket-Key" header then *DO* *NOT* compress
 - If *response* contains "Content-Encoding" header then *DO* *NOT* compress
+- If *response* *CAN* *NOT* compress (ex. jpeg, png) then *DO* *NOT* compress
 - If *response* body's length less than 860 bytes, it's faster to send uncompress data
 - Only use compress algorithm in "Accept-Encoding" header
 - Add "Vary: Accept-Encoding" header to *response*
 - Add "Content-Encoding: {compress algorithm}" header to *response*
 - Delete "Content-Length" header (before compress) from *response*
+
+* Workshop #22
+
+- Compression middleware
 
 * Object Pooling
 
@@ -364,6 +455,11 @@ Example
     Fastest:        0.0002 secs
     Average:        0.0046 secs
     Requests/sec:   10640.0509
+
+
+* Workshop #23
+
+- Compression with Object Pooling
 
 * Cross-Origin Resource Sharing (CORS)
 
@@ -474,6 +570,10 @@ P: Preflighted Request, R: Real Request
     Vary: Origin
 - If *NOT* Allow All Origin and *Incoming* *Origin* is *DENY*, response with forbidden
 
+* Workshop #24
+
+- CORS
+
 * Health Check
 
 - To tell when ready to accept incoming request
@@ -499,6 +599,10 @@ P: Preflighted Request, R: Real Request
 * Graceful Shutdown
 
 .code graceful-shutdown.go
+
+* Workshop #25
+
+- Graceful Shutdown
 
 * Authentication
 
@@ -533,6 +637,10 @@ P: Preflighted Request, R: Real Request
 
     Set-Cookie: session=wK8VfUWfF9R; Secure; HttpOnly; Path=/; Max-Age=3600
     Set-Cookie: session=wK8VfUWfF9R; Secure; HttpOnly; Path=/; Expires=Mon, 15 Jan 2018 08:00:00 GMT
+
+* Workshop #26
+
+- Cookie
 
 * Session
 
@@ -579,6 +687,14 @@ If a user submits a session ID through a different exchange mechanism, such as a
 *Manual*
 
 - Logout Button !!!
+
+* Workshop #27
+
+- Session
+
+* Workshop #28
+
+- Session without Fixation
 
 * HTTP Strict Transport Security (HSTS)
 
@@ -670,6 +786,10 @@ Currently, only *Chrome* based browsers supports this attribute.
     Set-Cookie: session=xxxxx; SameSite=Strict
 
     Set-Cookie: session=xxxxx; SameSite=Lax
+
+* Workshop #29
+
+- CSRF
 
 * HTTP/2
 
