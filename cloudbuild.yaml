@@ -1,12 +1,12 @@
 steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA']
-- name: 'gcr.io/cloud-builders/kubectl'
-  args: ['set', 'image', '$_RESOURCE', 'present=gcr.io/$PROJECT_ID/present:$COMMIT_SHA']
+- name: gcr.io/cloud-builders/docker
+  args: [build, -t, gcr.io/$PROJECT_ID/present:$COMMIT_SHA, '.']
+- name: gcr.io/cloud-builders/docker
+  args: [push, gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
+- name: gcr.io/cloud-builders/kubectl
+  args: [set, image, -n, $_NAMESPACE, $_RESOURCE, present=gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
   env:
-  - 'CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE'
-  - 'CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER'
+  - CLOUDSDK_COMPUTE_ZONE=$_CLOUDSDK_COMPUTE_ZONE
+  - CLOUDSDK_CONTAINER_CLUSTER=$_CLOUDSDK_CONTAINER_CLUSTER
 images:
-  - 'gcr.io/$PROJECT_ID/present:$COMMIT_SHA'
+  - gcr.io/$PROJECT_ID/present:$COMMIT_SHA
