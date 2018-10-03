@@ -1,0 +1,106 @@
+Backend {Hard Way} Ep.2
+https://github.com/acoshift/backend-hardway-ep2
+
+Thanatat Tamtan
+
+Software Magician
+acoshift@gmail.com
+https://acoshift.me
+@acoshift
+
+* Table of contents
+
+- Encoding
+- Hashing
+- Password Hashing
+- Symmetric Encryption
+- Asymmetric Encryption
+- Signing
+- Basic Authentication
+- Session Token Authentication
+- Signature Token Authentication
+- Proxy
+- Reverse Proxy
+- Load Balancer
+
+* Encoding
+
+* Encoding
+
+Encoder
+
+    f(x) = y
+
+Decoder
+
+    f'(y) = x
+
+* Example: Unicode <=> Hex
+
+Unicode
+
+    super_se  c   ret = 🔥
+
+Hex
+
+    73757065725f7365202063202020726574203d20f09f94a5
+
+* Example: Binary <=> Hex
+
+Binary (show in Unicode)
+
+    �>r�g��
+
+Hex
+
+    057590b23d67870317db0da7183e72ac
+
+* Hex Encoding
+
+Charset
+
+    const char = "0123456789abcdef"
+
+1 Byte => 2 Hex
+
+    1001 1101 = 9d
+
+    1001 1101 >> 4 = 1001 = 9
+    1001 1101 & 0000 1111 = 1101 = d
+
+.play encode.go /^func encode/,/^}/
+
+* Hex Decoding
+
+2 Hex => 1 Byte
+
+.play decode.go /^func decode/,/^}/
+.code decode.go /^func getByte/,/^}/
+
+* Hashing
+
+* Hashing
+
+Hash function
+
+    f(x) = y
+
+But
+
+    f'(y) = x
+
+is impossible (except Brute force :P)
+
+* Checksum
+
+.play checksum1.go /^func sum/,/^}/
+
+* Checksum - djb2
+
+.play checksum2.go /^func djb2/,/^}/
+
+* Checksum - SHA1
+
+.play checksum3.go /^func main/,/^}/
+
+* TODO
