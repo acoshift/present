@@ -1,0 +1,162 @@
+Dispatcher
+
+Thanatat Tamtan
+
+acoshift@gmail.com
+https://github.com/acoshift
+
+* ปัญหา
+
+* ไม่รู้ว่าจะได้เขียน Test ไหม
+
+- Timeline สั้น
+- Team เล็ก (1-2 คน)
+- ทำ MVP ไปลองก่อน feature อาจจะไม่ได้ใช้
+
+* พอมาเขียน Test ทีหลัง
+
+- ไม่ได้ทำ interface ไว้ mock ไม่ได้
+- interface ใหญ่มาก mock ไม่ไหว (งานถึก+ทีมเล็ก+ต้องทำ feature ใหม่พร้อมกัน = ขี้เกียจ)
+- แก้ code เยอะมาก กลัวพัง
+
+* ลองดู function ง่าย ๆ
+
+.code getuser.go /^func Get/,/^}/
+
+* ทำให้ mock ได้
+
+.code mockgetuser.go /START OMIT/,/END OMIT/
+
+* ทำให้ mock ได้ หลาย ๆ อัน
+
+.code mockgetuser2.go /START OMIT/,/END OMIT/
+
+* ลอง mock หน่อย
+
+.code mockgetuser3.go /START OMIT/,/END OMIT/
+
+* หรือ mock ทีละอันดี ?
+
+.code mockgetuser4.go /START OMIT/,/END OMIT/
+
+ซึ่งต้องทำตั้งแต่แรก
+
+* ไม่รู้ว่าจะได้เขียน Test ไหม
+
+* แล้วทำยังไงให้เขียน code ไปก่อน แล้วมาเขียนเทสทีหลัง โดยที่แก้ code แค่ 0 บรรทัด ?
+
+* =======> Reflect 😳
+
+* จาก function เมื่อกี้
+
+.code refgetuser1.go /START OMIT/,/END OMIT/
+
+แก้นิดหน่อย
+
+.code refgetuser2.go /START OMIT/,/END OMIT/
+
+* แก้ที่เหลือให้หน้าตาเหมือนกัน
+
+.code refgetuser3.go /START OMIT/,/END OMIT/
+
+* เราจะได้
+
+	func(context.Context, ANY) error
+
+ขอตั้งชื่อให้มันว่า
+
+	type Handler interface{}
+
+* คุ้น ๆ ไหม ?
+
+	http.Handler
+
+* ลองดู http.ServeMux
+
+map[string]http.Handler
+
+Path => Handler
+
+* ถ้าเราจะทำ Mux ที่คล้่าย ๆ กัน
+
+map[string]http.Handler
+
+Param Type Name => Handler
+
+* ดึง Type Name
+
+	func reflectTypeName(r reflect.Type) string {
+		pkg := r.PkgPath()
+		name := r.Name()
+		if pkg == "" {
+			return name
+		}
+		return pkg + "." + name
+	}
+
+ดึง Type Name จาก Handler
+
+	func NameFromHandler(h Handler) string {
+		return reflectTypeName(reflect.TypeOf(h).In(1).Elem())
+	}
+
+* สร้าง Mux ขึ้นมาเอง
+
+	type Mux struct {
+		handler map[string]Handler
+	}
+
+	func (d *Mux) Register(hs ...Handler) {
+		if d.handler == nil {
+			d.handler = make(map[string]Handler)
+		}
+
+		for _, h := range hs {
+			k := NameFromHandler(h)
+			d.handler[k] = h
+		}
+	}
+
+* สร้าง function คล้าย ๆ ServeHTTP ของ http.ServeMux
+
+	func (d *Mux) Dispatch(ctx context.Context, msg interface{}) error {
+		k := reflectTypeNamereflect.TypeOf(msg).Elem())
+
+		h := d.handler[k]
+		if h == nil {
+			return ErrNotFound
+		}
+
+		err := reflect.ValueOf(h).Call([]reflect.Value{
+			reflect.ValueOf(ctx),
+			reflect.ValueOf(msg),
+		})[0].Interface()
+		if err != nil {
+			return err.(error)
+		}
+		return nil
+	}
+
+* หรือดู code จาก
+
+.link https://github.com/moonrhythm/dispatcher
+
+* ใช้ ได้ง่าย ๆ
+
+.play usage.go /START OMIT/,/END OMIT/
+
+* mock ได้ง่าย ๆ
+
+.play usagemock.go /START OMIT/,/END OMIT/
+
+* debug ได้ง่าย ๆ
+
+.play usagedebug.go /START OMIT/,/END OMIT/
+
+* cache ได้ง่าย ๆ
+
+.play usagecache.go /START OMIT/,/END OMIT/
+
+* API ได้ง่าย ๆ
+
+.play usageapi.go /START OMIT/,/END OMIT/
