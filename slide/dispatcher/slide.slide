@@ -77,9 +77,9 @@ map[string]http.Handler
 
 Path => Handler
 
-* ถ้าเราจะทำ Mux ที่คล้่าย ๆ กัน
+* ถ้าเราจะทำ Mux ที่คล้าย ๆ กัน
 
-map[string]http.Handler
+map[string]Handler
 
 Param Type Name => Handler
 
@@ -106,15 +106,13 @@ Param Type Name => Handler
 		handler map[string]Handler
 	}
 
-	func (d *Mux) Register(hs ...Handler) {
+	func (d *Mux) Register(h Handler) {
 		if d.handler == nil {
 			d.handler = make(map[string]Handler)
 		}
 
-		for _, h := range hs {
-			k := NameFromHandler(h)
-			d.handler[k] = h
-		}
+		k := NameFromHandler(h)
+		d.handler[k] = h
 	}
 
 * สร้าง function คล้าย ๆ ServeHTTP ของ http.ServeMux
