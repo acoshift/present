@@ -1,4 +1,4 @@
-FROM golang:1.11.1-alpine
+FROM golang:1.11.4-alpine
 
 RUN apk add --no-cache git
 RUN go get golang.org/x/tools/cmd/present
