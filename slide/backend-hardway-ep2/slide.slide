@@ -3,9 +3,7 @@ https://github.com/acoshift/backend-hardway-ep2
 
 Thanatat Tamtan
 
-Software Magician
 acoshift@gmail.com
-https://acoshift.me
 @acoshift
 
 * Table of contents
@@ -89,7 +87,7 @@ But
 
     f'(y) = x
 
-is impossible (except Brute force :P)
+impossible (except Brute force :P)
 
 * Checksum
 
@@ -103,4 +101,111 @@ is impossible (except Brute force :P)
 
 .play checksum3.go /^func main/,/^}/
 
-* TODO
+* Cryptographic Hash Function
+
+* Cryptographic Hash Function
+
+- Irreversible
+- Small change, Big impact
+- Need to be slow
+
+* Irreversible
+
+.play bcrypt1.go /^func main/,/^}/
+
+* Small change, Big impact
+
+.play bcrypt2.go /^func main/,/^}/
+
+* Need to be slow
+
+.play bcrypt3.go /^func main/,/^}/
+
+* Encryption
+
+* Benefits
+
+- Authentication
+
+    Can verify origin of message
+
+- Integrity
+
+    Can proof that message have not been changed
+
+- Nonrepudiation
+
+    Cannot deny sending message
+
+* Types
+
+- Symmetric
+- Asymmetric
+
+* Symmetric
+
+    Plaintext => Encrypt Algorithm + Key => Ciphertext
+    Ciphertext => Decrypt Algorithm + Key => Plaintext
+
+.play encrypt1.go /START OMIT/,/END OMIT/
+
+* Asymmetric
+
+    Plaintext => Encrypt Algorithm + Public Key => Ciphertext
+    Ciphertext => Decrypt Algorithm + Private Key => Plaintext
+
+.play encrypt2.go /START OMIT/,/END OMIT/
+
+* Digital Signature
+
+* Digital Signature
+
+Verify the authenticity of digital messages or documents
+
+.play sign.go /START OMIT/,/END OMIT/
+
+* Authentication
+
+* Authentication
+
+- Session
+- Basic
+- Digest
+- Bearer Token
+
+* Basic Authentication
+
+    Authorization: Basic <credentials>
+
+    credentials = base64(username:password)
+
+Example
+
+    credential = base64("root:toor") = "cm9vdDp0b29y"
+
+    Authorization: Basic cm9vdDp0b29y
+
+* Bearer Token
+
+- Session Token
+- Signature-based Token
+
+* (Our) Gob Token
+
+    token = base64(gob(data)).base64(signature)
+
+.play gobtoken.go /START OMIT/,/END OMIT/
+
+* JSON Web Token (JWT)
+
+    token = base64(header).base64(payload).base64(signature)
+
+    header = { "alg": "", "typ": "JWT" }
+    payload = { ... }
+    signature = alg(base64(header) + "." + base64(payload), secret)
+
+* Proxy
+
+* Reverse Proxy
+
+* Load Balancer
