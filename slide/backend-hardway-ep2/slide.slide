@@ -206,6 +206,12 @@ Example
 
 * Proxy
 
+.image proxy.png _ 700
+
 * Reverse Proxy
 
+.image reverse_proxy.png _ 900
+
 * Load Balancer
+
+.image ipv6-3.svg _ 800
