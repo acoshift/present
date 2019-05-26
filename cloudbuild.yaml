@@ -12,7 +12,6 @@ steps:
   - --async
   - --region=$_RUN_REGION
   - --concurrency=80
-  - --connectivity=external
   - --allow-unauthenticated
   - --timeout=10
   - --memory=128Mi
