@@ -4,6 +4,18 @@ steps:
 - name: gcr.io/cloud-builders/docker
   args: [push, gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
 - name: gcr.io/cloud-builders/gcloud
-  args: [beta, run, deploy, $_RUN_NAME, --region=$_RUN_REGION, --image, gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
+  args:
+  - beta
+  - run
+  - deploy
+  - $_RUN_NAME
+  - --async
+  - --region=$_RUN_REGION
+  - --concurrency=80
+  - --connectivity=external
+  - --allow-unauthenticated
+  - --timeout=10
+  - --memory=128Mi
+  - --image=gcr.io/$PROJECT_ID/present:$COMMIT_SHA
 images:
   - gcr.io/$PROJECT_ID/present:$COMMIT_SHA
