@@ -3,18 +3,11 @@ steps:
   args: [build, -t, gcr.io/$PROJECT_ID/present:$COMMIT_SHA, '.']
 - name: gcr.io/cloud-builders/docker
   args: [push, gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
-- name: gcr.io/cloud-builders/gcloud
-  args:
-  - beta
-  - run
-  - deploy
-  - $_RUN_NAME
-  - --async
-  - --region=$_RUN_REGION
-  - --concurrency=80
-  - --allow-unauthenticated
-  - --timeout=10
-  - --memory=128Mi
-  - --image=gcr.io/$PROJECT_ID/present:$COMMIT_SHA
+- name: acoshift/kubectl
+  args: [set, image, deploy/present, app=gcr.io/$PROJECT_ID/present:$COMMIT_SHA]
+  env:
+  - SERVER=$_DEPLOY_ENDPOINT
+  - NAMESPACE=$_DEPLOY_NAMESPACE
+  - TOKEN=$_DEPLOY_TOKEN
 images:
   - gcr.io/$PROJECT_ID/present:$COMMIT_SHA

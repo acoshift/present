@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: present
+spec:
+  template:
+    spec:
+      containers:
+      - name: app
+        image: ${IMAGE}
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: "1"
+            memory: 64Mi
+          requests:
+            cpu: "0"
+            memory: "0"
