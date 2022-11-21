@@ -8,4 +8,4 @@ RUN go install golang.org/x/tools/cmd/present@latest
 
 EXPOSE 8080
 WORKDIR /workspace/slide
-CMD ["present", "-http=0.0.0.0:8080", "-play=false"]
+CMD ["present", "-http=0.0.0.0:8080", "-play=false", "-base=.."]
