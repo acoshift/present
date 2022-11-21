@@ -1,10 +1,8 @@
-FROM golang:1.12.7-alpine
+FROM golang:1.19.3-alpine
 
 RUN apk add --no-cache git
-RUN go get golang.org/x/tools/cmd/present
-
-ADD slide /slide
+ADD . /workspace/
 
 EXPOSE 8080
-WORKDIR /slide
+WORKDIR /workspace/slide
 CMD ["present", "-http=0.0.0.0:8080"]
