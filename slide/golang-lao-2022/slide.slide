@@ -1,0 +1,102 @@
+# LAO Golang Meetup 2022 [WIP]
+รวม technique ที่ใช้ใน Go
+
+Thanatat Tamtan
+
+https://github.com/acoshift
+https://acoshift.me
+@acoshift
+
+## HTTP(S) Server Graceful Shutdown [1]
+
+.code graceful-shutdown-01.go /START OMIT/,/END OMIT/
+
+```
+$ go run ./graceful-shutdown-01.go
+server: start
+request: send
+server: responding in 5 seconds
+^Csignal: interrupt
+```
+
+## HTTP(S) Server Graceful Shutdown [2]
+
+.code graceful-shutdown-02.go /START OMIT/,/END OMIT/
+
+## HTTP(S) Server Graceful Shutdown [3]
+
+```
+$ go run ./graceful-shutdown-02.go
+request: send
+server: responding in 5 seconds
+^Cserver is shutting down...
+request: ok
+server shutdown
+```
+
+## HTTP(S) Server Graceful Shutdown [4]
+
+.image graceful-shutdown-01.png
+
+## HTTP(S) Server Graceful Shutdown [5]
+
+.image graceful-shutdown-02.png
+
+## Graceful Shutdown Worker [1]
+
+.code graceful-shutdown-worker-01.go /START OMIT/,/END OMIT/
+
+```
+$ go run ./graceful-shutdown-worker-01.go
+doing work 0
+done work 0
+doing work 1
+^Csignal: interrupt
+```
+
+## Graceful Shutdown Worker [2]
+
+.code graceful-shutdown-worker-02.go /START 1 OMIT/,/END 1 OMIT/
+
+## Graceful Shutdown Worker [3]
+
+.code graceful-shutdown-worker-02.go /START 2 OMIT/,/END 2 OMIT/
+
+## Graceful Shutdown Worker [4]
+
+.code graceful-shutdown-worker-02.go /START 3 OMIT/,/END 3 OMIT/
+
+```
+$ go run ./graceful-shutdown-worker-02.go
+work: doing 0
+work: done 0
+work: doing 1
+^Cworker is shutting down...
+work: done 1
+work: stop
+worker shutdown
+```
+
+## Clear Map ใหญ่ ๆ ให้สร้างใหม่ [1]
+
+.play map-delete-01.go /START OMIT/,/END OMIT/
+
+## Clear Map ใหญ่ ๆ ให้สร้างใหม่ [2]
+
+.play map-delete-02.go /START OMIT/,/END OMIT/
+
+## ระวัง panic ใน goroutine [1]
+
+.play panic-in-goroutine-01.go /START OMIT/,/END OMIT/
+
+## ระวัง panic ใน goroutine [2]
+
+.play panic-in-goroutine-02.go /START OMIT/,/END OMIT/
+
+## แบ่งงานให้ errgroup [1]
+
+.play errgroup-01.go /START OMIT/,/END OMIT/
+
+## แบ่งงานให้ errgroup [2]
+
+.play errgroup-02.go /START OMIT/,/END OMIT/
