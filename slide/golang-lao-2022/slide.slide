@@ -198,3 +198,11 @@ debug.SetGCPercent(-1)
 ## Insert ข้อมูลลง database หลาย records ให้ใช้ batch [3]
 
 .code insert-batch-02.go /START 2 OMIT/,/END 2 OMIT/
+
+## ใช้ singleflight เพื่อรอผลลัพท์จาก function ที่เรียกซ้ำ [1]
+
+.code singleflight-01.go /START 2 OMIT/,/END 2 OMIT/
+
+## ใช้ singleflight เพื่อรอผลลัพท์จาก function ที่เรียกซ้ำ [2]
+
+.play singleflight-01.go /START 1 OMIT/,/END 1 OMIT/
