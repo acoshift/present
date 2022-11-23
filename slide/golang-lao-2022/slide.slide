@@ -100,3 +100,37 @@ worker shutdown
 ## แบ่งงานให้ errgroup [2]
 
 .play errgroup-02.go /START OMIT/,/END OMIT/
+
+## ใช้ sync.Pool เพื่อ reuse struct ที่ใหญ่ ๆ [1]
+
+.code pool-01.go /START 1 OMIT/,/END 1 OMIT/
+.code pool-01.go /START 2 OMIT/,/END 2 OMIT/
+
+```
+$ wrk -c10 -t10 -d10s http://[::1]:3000 -H "Accept-Encoding: gzip"
+Running 10s test @ http://[::1]:3000
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   773.58us  616.20us  24.26ms   87.75%
+    Req/Sec     1.36k   156.79     3.54k    95.31%
+  136006 requests in 10.10s, 193.39MB read
+Requests/sec:  13465.39
+Transfer/sec:     19.15MB
+```
+
+## ใช้ sync.Pool เพื่อ reuse struct ที่ใหญ่ ๆ [2]
+
+.code pool-02.go /START 1 OMIT/,/END 1 OMIT/
+.code pool-02.go /START 2 OMIT/,/END 2 OMIT/
+
+```
+wrk -c10 -t10 -d10s http://[::1]:3000 -H "Accept-Encoding: gzip"
+Running 10s test @ http://[::1]:3000
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency     1.05ms    3.55ms  51.98ms   93.62%
+    Req/Sec     5.84k     0.96k    8.93k    71.70%
+  581613 requests in 10.01s, 827.01MB read
+Requests/sec:  58119.03
+Transfer/sec:     82.64MB
+```
