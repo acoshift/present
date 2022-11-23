@@ -154,3 +154,15 @@ Transfer/sec:     82.64MB
 ## เก็บ struct ลง db แบบ json [3]
 
 .code json-db-01.go /START 3 OMIT/,/END 3 OMIT/
+
+## หรือทำ struct มาครอบ [1]
+
+.code json-db-02.go /START 1 OMIT/,/END 1 OMIT/
+
+## หรือทำ struct มาครอบ [2]
+
+.code json-db-02.go /START 2 OMIT/,/END 2 OMIT/
+
+## หรือทำ struct มาครอบ [3]
+
+.code json-db-02.go /START 3 OMIT/,/END 3 OMIT/
