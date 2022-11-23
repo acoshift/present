@@ -11,6 +11,8 @@ require (
 )
 
 require (
+	github.com/acoshift/pgsql v0.9.0 // indirect
+	github.com/lib/pq v1.10.7 // indirect
 	github.com/yuin/goldmark v1.4.13 // indirect
 	golang.org/x/net v0.2.0 // indirect
 	golang.org/x/sys v0.2.0 // indirect

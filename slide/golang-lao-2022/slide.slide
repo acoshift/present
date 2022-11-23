@@ -166,3 +166,27 @@ Transfer/sec:     82.64MB
 ## หรือทำ struct มาครอบ [3]
 
 .code json-db-02.go /START 3 OMIT/,/END 3 OMIT/
+
+## ตอน build อย่าลืมใส่ microarchitecture level
+
+```
+GOAMD64=v2 go build -o server .
+GOAMD64=v3 go build -o server .
+GOAMD64=v4 go build -o server .
+```
+
+[https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels](https://en.wikipedia.org/wiki/X86-64#Microarchitecture_levels)
+
+## ทำ command line tool ที่ต้องการ performance สามารถปิด GC ได้เลย
+
+เช่น [esbuild](https://github.com/evanw/esbuild/blob/478062d5310b27f1a6a259602a79bf84e233cc1d/cmd/esbuild/main.go#L302)
+
+```
+debug.SetGCPercent(-1)
+```
+
+## Insert ข้อมูลลง database หลาย records ให้ใช้ batch
+
+.code insert-batch-01.go /START 1 OMIT/,/END 1 OMIT/
+
+.code insert-batch-01.go /START 2 OMIT/,/END 2 OMIT/
