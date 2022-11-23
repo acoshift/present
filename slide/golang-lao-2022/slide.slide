@@ -134,3 +134,11 @@ Running 10s test @ http://[::1]:3000
 Requests/sec:  58119.03
 Transfer/sec:     82.64MB
 ```
+
+## ระวังเวลา loop []X [1]
+
+.play loop-struct-01.go /START OMIT/,/END OMIT/
+
+## ระวังเวลา loop []X [2]
+
+.play loop-struct-02.go /START OMIT/,/END OMIT/
