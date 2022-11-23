@@ -206,3 +206,7 @@ debug.SetGCPercent(-1)
 ## ใช้ singleflight เพื่อรอผลลัพท์จาก function ที่เรียกซ้ำ [2]
 
 .play singleflight-01.go /START 1 OMIT/,/END 1 OMIT/
+
+## อย่าลืม Redact sensitive data ออกจาก log
+
+.play redact-01.go /START OMIT/,/END OMIT/
