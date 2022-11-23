@@ -185,8 +185,16 @@ GOAMD64=v4 go build -o server .
 debug.SetGCPercent(-1)
 ```
 
-## Insert ข้อมูลลง database หลาย records ให้ใช้ batch
+## Insert ข้อมูลลง database หลาย records ให้ใช้ batch [1]
 
 .code insert-batch-01.go /START 1 OMIT/,/END 1 OMIT/
 
 .code insert-batch-01.go /START 2 OMIT/,/END 2 OMIT/
+
+## Insert ข้อมูลลง database หลาย records ให้ใช้ batch [2]
+
+.code insert-batch-02.go /START 1 OMIT/,/END 1 OMIT/
+
+## Insert ข้อมูลลง database หลาย records ให้ใช้ batch [3]
+
+.code insert-batch-02.go /START 2 OMIT/,/END 2 OMIT/
